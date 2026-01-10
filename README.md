@@ -48,7 +48,7 @@ Utilize o seguinte comando para gerar o relatório para detectar as repetições
 node src\cli.js -o arquivo_para_ser_lido d- destino_relatorio_gerado
 ```
 
-![imggif]("C:\Users\Diego\Downloads\gif.gif")
+![imggif](git@github.com:mininoterraria/Relator-Palavras-Duplicadas/media/gif.gif")
 
 
 
