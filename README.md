@@ -1,4 +1,4 @@
-<h1>Titulo ou Arte do Projeto</h1> 
+<h1>Relator de Palavras Duplicadas</h1> 
 
 > Status do Projeto: :heavy_check_mark:
 
