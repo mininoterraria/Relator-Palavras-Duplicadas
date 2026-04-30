@@ -1,22 +1,15 @@
-const separarEmParagrafos = (conteudoArquivo) => { //Pega o textoBruto e cria um array onde cada elemento é um parágrafo do texto.
-    return conteudoArquivo.split("\n");
+import {limparParagrafosVazios, removerCaracteresIndesejados, removerPalavrasUnicas} from './helpers.js';
+
+const gerarArrayParagrafos = (conteudoArquivo) => { //Pega o textoBruto e cria um array onde cada elemento é um parágrafo do texto.
+    conteudoArquivo = conteudoArquivo.split("\r\n");
+    conteudoArquivo = limparParagrafosVazios(conteudoArquivo);
+    const arrayParagrafos = conteudoArquivo;
+
+    return arrayParagrafos;
 }
 
-const limparParagrafosVazios = (arrayParagrafos) => { //Função helper que limpa parágrafos vazios no texto.
-    return arrayParagrafos.filter((paragrafo) => paragrafo !== '\r' && paragrafo !== '');
-}
 
-const removerCaracterIndesejadoParagrafo = (arrayParagrafos) => {
-    return arrayParagrafos.map((paragrafo) => {
-        return paragrafo.substring(0, paragrafo.length - 1);
-    });
-};
-
-const removerCaracteresIndesejados = (palavra) => { //Função helper que remove caracteres indesejados da palavra repetida.
-    return palavra.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
-}
-
-const arrayObjetoPalavras = (arrayParagrafos) => { //Função que transforma a lista de parágrafos em objetos com palavras.
+const gerarArrayObjetoPalavras = (arrayParagrafos) => { //Função que transforma a lista de parágrafos em objetos com palavras.
     const objetoPalavras = {};
 
     arrayParagrafos.forEach((paragrafo) => {
@@ -32,19 +25,11 @@ const arrayObjetoPalavras = (arrayParagrafos) => { //Função que transforma a l
         
     });
 
+    objetoPalavras = removerPalavrasUnicas(objetoPalavras);
+
     return objetoPalavras;
 
 }
-
-const removerPalavrasUnicas = (objetoPalavras) => {
-    for(const [palavra, qtd] of Object.entries(objetoPalavras)){
-        if(qtd == 1){
-            delete objetoPalavras[palavra];
-        }
-    }
-
-    return objetoPalavras;
-};
 
 const converterConteudoEmTextoLegível = (listaObjetoPalavras) => { //Função que converte a lista de objetos de palavras em texto legível a usuários.
     let textoLegivel = '';
@@ -66,7 +51,7 @@ const converterConteudoEmTextoLegível = (listaObjetoPalavras) => { //Função q
     return textoLegivel;
 }
 
-export {separarEmParagrafos, limparParagrafosVazios, removerCaracteresIndesejados, removerCaracterIndesejadoParagrafo, arrayObjetoPalavras, removerPalavrasUnicas};
+export {gerarArrayParagrafos, arrayObjetoPalavras};
 
 
 
